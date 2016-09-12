@@ -26,6 +26,8 @@ requirements:
         - libgcc  # [linux]
 
 test:
+    requires:
+        - gcc  # [osx]
     files:
         - tests/helloworld.c
         - tests/helloworld.cxx
