@@ -9,7 +9,7 @@ if [ "$(uname)" == "Darwin" ]; then
     export MACOSX_DEPLOYMENT_TARGET="10.9"
     export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"
     export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
-    export LIBRARY_PATH="${PREFIX}/lib"
+    # export LIBRARY_PATH="${PREFIX}/lib"
     # export LD_LIBRARY_PATH="${PREFIX}/lib"
 fi
 
