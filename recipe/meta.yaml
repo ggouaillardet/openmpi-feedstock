@@ -29,6 +29,7 @@ test:
     files:
         - tests/helloworld.c
         - tests/helloworld.cxx
+        - tests/helloworld.f90
     #commands:
         #- conda inspect linkages -n _test openmpi  # [not win]
         #- conda inspect objects -n _test openmpi  # [osx]
