@@ -3,21 +3,30 @@
 OPTS=""
 
 if [ "$(uname)" == "Darwin" ]; then
-    export DYLD_FALLBACK_LIBRARY_PATH=$PREFIX/lib
     export CC=clang
     export CXX=clang++
     export MACOSX_DEPLOYMENT_TARGET="10.9"
     export CXXFLAGS="-stdlib=libc++ $CXXFLAGS"
     export CXXFLAGS="$CXXFLAGS -stdlib=libc++"
-    # export LIBRARY_PATH="${PREFIX}/lib"
-    # export LD_LIBRARY_PATH="${PREFIX}/lib"
+    export LIBRARY_PATH="${PREFIX}/lib"
+    if [ -n "$LD_LIBRARY_PATH" ]; then
+        export LD_LIBRARY_PATH="${PREFIX}/lib:$LD_LIBRARY_PATH"
+    else
+        export LD_LIBRARY_PATH="${PREFIX}/lib"
+    fi
 fi
 
+ls ${PREFIX}/lib
 
-./configure --prefix=$PREFIX \
-            --disable-dependency-tracking
+echo 'program test; end program test' > test.f90
+gfortran test.f90
+otool -L a.out
+./a.out
 
+./configure --prefix=${PREFIX} \
+            --disable-dependency-tracking \
+            LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
-make -j $CPU_COUNT
+make -j 4
 make check
 make install

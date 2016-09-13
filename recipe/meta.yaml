@@ -18,11 +18,8 @@ build:
 
 requirements:
     build:
-        - perl
         - gcc  # [not win]
-        - libgfortran  # [osx]
     run:
-        - libgfortran  # [osx]
         - libgcc  # [linux]
 
 test:

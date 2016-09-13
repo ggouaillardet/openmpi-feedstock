@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $(uname) == Darwin ]]; then
-  export DYLD_LIBRARY_PATH=$PREFIX/lib
+  export LD_LIBRARY_PATH=$PREFIX/lib
 fi
 
 command -v ompi_info
